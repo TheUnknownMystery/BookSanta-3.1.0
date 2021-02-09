@@ -1,8 +1,7 @@
 import * as React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Modal, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Modal, ScrollView, KeyboardAvoidingView, Alert } from 'react-native'
 import firebase from 'firebase'
 import db from "../config"
-
 
 export default class WelcomeScreen extends React.Component {
 
@@ -125,7 +124,11 @@ export default class WelcomeScreen extends React.Component {
               />
               <View>
 
-                <TouchableOpacity style={styles.RegisterButton}>
+                <TouchableOpacity style={styles.RegisterButton} onPress={() => {
+
+                  this.UserSignUp(this.state.EmailID, this.state.Password, this.state.ConfirmPassword)
+
+                }}>
 
                   <Text style={styles.RegisterButtonText}>Register</Text>
 
@@ -135,7 +138,13 @@ export default class WelcomeScreen extends React.Component {
 
               <View>
 
-                <TouchableOpacity style={styles.RegisterButton}>
+                <TouchableOpacity style={styles.RegisterButton} onPress={() => {
+
+                  this.setState({
+                    isModalVisible: false
+                  })
+
+                }}>
 
                   <Text style={styles.RegisterButtonText}>Cancel</Text>
 
@@ -155,19 +164,38 @@ export default class WelcomeScreen extends React.Component {
     )
 
   }
-  UserSignUp = (Email, Password) => {
+  UserSignUp = (Email, Password, ConfirmPassword) => {
 
-    firebase.auth().createUserWithEmailAndPassword(Email, Password)
-      .then((response) => {
+    if (Password !== ConfirmPassword) {
+      return alert("Password Does not match Confirm Password")
+    } else {
+      firebase.auth().createUserWithEmailAndPassword(Email, Password)
+        .then((response) => {
 
-        return alert("User Added Sucesfully")
+          db.collection("Users").add({
 
-      })
-      .catch(function (error) {
+          "FirstName": this.state.FirstName,
+          "LastName": this.state.LastName,
+          "Address": this.state.Address,
+          "ContactNumber": this.state.FirstName,
+          "Email": this.state.EmailID
 
-        var errorMessage = error.message;
-        return alert(errorMessage);
-      })
+
+          })
+          return Alert.alert( 
+            'User Added Successfully',
+            '',
+            [
+              {text: 'Ok', onPress:()=>this.setState({isModalVisible:false})}
+            ]
+          );
+        })
+        .catch(function (error) {
+
+          var errorMessage = error.message;
+          return alert(errorMessage);
+        })
+    }
   }
 
   userLogin = (Email, Password) => {
@@ -175,8 +203,7 @@ export default class WelcomeScreen extends React.Component {
     firebase.auth().signInWithEmailAndPassword(Email, Password)
       .then((response) => {
 
-        return alert("login was sucessful")
-
+        this.props.navigation.navigate('DonateBooks');
       })
       .catch(function (error) {
 
@@ -190,7 +217,7 @@ export default class WelcomeScreen extends React.Component {
     return (
 
       <View style={styles.container}>
-      
+
         <View style={styles.innerContainer}>
           {this.ShowModal()}
           <Text style={styles.Title}>BookSanta</Text>
@@ -201,7 +228,7 @@ export default class WelcomeScreen extends React.Component {
           <Image
 
             source={require("../assets/rocksanta.gif")}
-            style={{ width: 200, height: 100, alignSelf: 'center' }}
+            style={{ width: 200, height: 100, alignSelf: 'center', marginTop: -900 }}
 
           />
           <TextInput
@@ -228,7 +255,7 @@ export default class WelcomeScreen extends React.Component {
           <TouchableOpacity style={[styles.button, { marginTop: 20, marginBottom: 20 }]} onPress={() => {
 
             //this.UserSignUp(this.state.EmailID, this.state.Password)
-            this.setState({isModalVisible: true})
+            this.setState({ isModalVisible: true })
 
           }}>
 
@@ -263,14 +290,15 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: 'center',
     justifyContent: "center",
-    flex: 1,
     backgroundColor: 'lightblue',
+
 
   },
   Title: {
 
     fontSize: 65,
-    paddingBottom: 30,
+    paddingBottom: 1000,
+    marginLeft: -90,
     fontWeight: '300',
     color: 'white'
 
@@ -294,6 +322,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: 'grey',
     borderRadius: 3
   },
@@ -301,15 +330,18 @@ const styles = StyleSheet.create({
   buttonText: {
 
     fontSize: 20,
-    fontWeight: '200',
+    fontWeight: '300',
     color: 'white'
 
   },
   innerContainer: {
-    flex: 1,
+
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 200
+    marginTop: 200,
+    alignSelf: 'center',
+    backgroundColor: 'lightblue',
+    paddingLeft: 80
   },
 
   FoarmView: {
@@ -360,7 +392,8 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 3,
+    borderColor: 'lightblue',
     borderRadius: 10,
     marginTop: 30
 
