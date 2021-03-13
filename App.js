@@ -5,12 +5,19 @@ import WelcomeScreen from './Screens/WelcomeScreen'
 import BookRequestScreen from "./Screens/BookrequestScreen"
 import { AppTabNavigator } from './components/appTabNavigator'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-
+import { AppDrawerNavigator } from './components/AppDrawerNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {AppStackNavigator} from './components/AppStackNavigator'
 
 export default class App extends React.Component {
   render() {
     return (
-     <AppContainer/>
+
+      <SafeAreaProvider>
+
+        <AppContainer />
+
+      </SafeAreaProvider>
     );
   }
 }
@@ -19,7 +26,8 @@ export default class App extends React.Component {
 const switchNavigator = createSwitchNavigator({
 
   WelcomeScreen: { screen: WelcomeScreen },
-  BottomTab: { screen: AppTabNavigator }
+  Drawer: { screen: AppDrawerNavigator },
+  Stack: {screen: AppStackNavigator}
 
 })
 

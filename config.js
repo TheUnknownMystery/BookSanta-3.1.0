@@ -3,7 +3,7 @@ require("@firebase/firestore")
 
 
 const firebaseConfig = {
- apiKey: "AIzaSyBTp_eJF67c21UVhIAQdAiJ_9TQi3MDvM4",
+    apiKey: "AIzaSyBTp_eJF67c21UVhIAQdAiJ_9TQi3MDvM4",
  authDomain: "booksanta-1-53257.firebaseapp.com",
  projectId: "booksanta-1-53257",
  storageBucket: "booksanta-1-53257.appspot.com",

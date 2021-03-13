@@ -169,24 +169,24 @@ export default class WelcomeScreen extends React.Component {
     if (Password !== ConfirmPassword) {
       return alert("Password Does not match Confirm Password")
     } else {
+
       firebase.auth().createUserWithEmailAndPassword(Email, Password)
         .then((response) => {
 
           db.collection("Users").add({
 
-          "FirstName": this.state.FirstName,
-          "LastName": this.state.LastName,
-          "Address": this.state.Address,
-          "ContactNumber": this.state.FirstName,
-          "Email": this.state.EmailID
-
+            "FirstName": this.state.FirstName,
+            "LastName": this.state.LastName,
+            "Address": this.state.Address,
+            "ContactNumber": this.state.FirstName,
+            "Email": this.state.EmailID
 
           })
-          return Alert.alert( 
+          return Alert.alert(
             'User Added Successfully',
             '',
             [
-              {text: 'Ok', onPress:()=>this.setState({isModalVisible:false})}
+              { text: 'Ok', onPress: () => this.setState({ isModalVisible: false }) }
             ]
           );
         })
