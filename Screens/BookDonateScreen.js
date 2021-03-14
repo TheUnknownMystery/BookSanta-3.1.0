@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity, TextInput, FlatList } from 'r
 import { ListItem } from 'react-native-elements'
 import db from "../config.js"
 import firebase from 'firebase'
-import MyHeader from '../components/MyHeader'
+import { MyHeader } from '../components/MyHeader'
 export default class BookDonateScreen extends React.Component {
 
   constructor() {
@@ -64,7 +64,7 @@ export default class BookDonateScreen extends React.Component {
 
                   <TouchableOpacity style={styles.button} onPress={() => {
 
-                    this.props.navigation.navigate('ReciverDetials',{"details":item})
+                    this.props.navigation.navigate('ReciverDetials', { "details": item })
 
                   }}>
 

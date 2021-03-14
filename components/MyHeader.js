@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Header, Icon, DrawerActions } from 'react-native-elements'
 
 
-const MyHeader = props => {
+export const MyHeader = props => {
     return (
         <Header
 
@@ -15,4 +15,4 @@ const MyHeader = props => {
     )
 }
 
-export default MyHeader
+

@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import firebase from 'firebase'
 import db from '../config'
 import { Card } from 'react-native-elements'
-import { diffClamp } from 'react-native-reanimated'
 
 
 export default class ReciverDetailScreen extends React.Component {
