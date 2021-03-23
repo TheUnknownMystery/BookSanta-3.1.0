@@ -23,6 +23,13 @@ export default class BookRequestScreen extends React.Component {
   return Math.random().toString(36).substring(7);
  }
 
+ componentDidMount=()=>{
+
+  var hours = new Date().getHours(); //To get the Current Hours
+  console.log(hours)
+
+ }
+
  addRequest = async (BookName, Reason) => {
 
   var userId = this.state.userId;

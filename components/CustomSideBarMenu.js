@@ -39,20 +39,19 @@ const styles = StyleSheet.create({
  logOutContainer: {
   flex: 0.2,
   justifyContent: 'flex-end',
-  paddingBottom: 30
+ 
  },
 
  logOutButton: {
   height: 30,
   width: '100%',
   justifyContent: 'center',
-  padding: 10
+ 
  },
 
  logOutText: {
   fontSize: 30,
   fontWeight: 'bold'
  }
-
 
 })

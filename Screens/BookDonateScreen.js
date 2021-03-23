@@ -39,7 +39,7 @@ export default class BookDonateScreen extends React.Component {
     return (
 
       <View>
-        <MyHeader title="Donate Books" />
+        <MyHeader title="Donate Books" navigation = {this.props.navigation}/>
         <FlatList
 
           data={this.state.BookList}
@@ -60,6 +60,7 @@ export default class BookDonateScreen extends React.Component {
                       {item.ReasonForBook}
 
                     </ListItem.Subtitle>
+
                   </ListItem.Content>
 
                   <TouchableOpacity style={styles.button} onPress={() => {

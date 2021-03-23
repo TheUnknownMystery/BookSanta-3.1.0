@@ -10,6 +10,7 @@ export const AppDrawerNavigator = createDrawerNavigator({
         screen: AppTabNavigator,
 
     },
+    
 
     Settings: {
 

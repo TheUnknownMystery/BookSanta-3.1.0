@@ -68,7 +68,7 @@ export default class SettingsScreen extends React.Component {
 
       <View >
 
-        <MyHeader title='Settings' />
+        <MyHeader title='Settings' navigation = {this.props.navigation}/>
 
         <View style={styles.container}>
 

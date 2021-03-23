@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
-import {MyHeader} from '../components/MyHeader'
+import { MyHeader } from '../components/MyHeader'
 import db from '../config'
 import firebase from 'firebase'
 import { ListItem } from 'react-native-elements'
@@ -44,7 +44,7 @@ export default class Notifications extends React.Component {
     return (
       <View>
 
-        <MyHeader title='Notifications' />
+        <MyHeader title='Notifications' navigation={this.props.navigation} />
 
         <View>
 
